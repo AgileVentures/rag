@@ -52,7 +52,7 @@ end
 
 Then /^I should see the tests execute correctly$/ do
   # rspec and cucumber set exit status to 1 if there any fails, otherwise to 0
-  expect(@test_status.inspect).to match /#<Process::Status: pid (.*\d) exit 0>$/
+  expect(@test_status.inspect).to be_success
 end
 
 Then /^I should see test results$/ do

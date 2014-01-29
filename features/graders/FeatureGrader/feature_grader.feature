@@ -1,8 +1,10 @@
-Feature: FeatureGrader - acceptance test grader
+Feature: FeatureGrader
   In order to check that students are capable of writing acceptance tests with cucumber
   As an instructor
   I want to grade and provide feedback on their cucumber features, scenarios and step definitions
 
+  #TODO YA the current reference application is based on 169.1 HW3 assignment, thus we cannot keep it within
+  #this repo in spec/fixtures. Instead, we are pulling it from a private repo and setting it up
   Background:
     Given I have a reference application
 
@@ -19,11 +21,6 @@ Feature: FeatureGrader - acceptance test grader
   Scenario: Reference application is properly set-up (cucumber)
     When I run cucumber tests on reference application
     Then I should see the tests execute correctly
-
-   #TODO YA implement later
-#  Scenario: Mutations for reference app are present and working properly
-#    When I run cucumber tests for mutations
-#    Then I should have the autograder_config.yml file for the reference application
 
   Scenario: Homeworks config.yml is present
     Then I should have the autograder_config.yml file for the reference application
@@ -45,7 +42,12 @@ Feature: FeatureGrader - acceptance test grader
 #  Scenario: FeatureGrader provides feedback
 
 
+#TODO YA implement later: this test is for instructor tool set, so that he can check that his reference app
+# before deploying the config to rag server
 
+#  Scenario: Mutations for reference app are present and working properly
+#    When I run cucumber tests for mutations
+#    Then I should have the autograder_config.yml file for the reference application
 
 
 
