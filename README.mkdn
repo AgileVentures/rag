@@ -1,184 +1,78 @@
-SAAS Autograder
-==============
+## AutoGraders
 
-Travis C. I. [![Build Status](https://travis-ci.org/saasbook/rag.png)](https://travis-ci.org/saasbook/rag)
-[![Code Climate](https://codeclimate.com/github/saasbook/rag.png)](https://codeclimate.com/github/saasbook/rag)
+[![Build Status]()]()
+[![Code Climate]()]()
 
+### Introduction
 
-####Berkeley SAAS  w/ [edX](https://www.edx.org/)
+AutoGraders is a project to provide a platform for automation of creating, testing, grading and providing feedback on programming assignments for students engaged in various programming courses.
 
-* Berkeley folks
-  * There is an AMI (id ami-df77a8b6) that includes latest version of the autograder.
-* Other folks
-  * the autograder code is at [github:saasbook/rag](https://github.com/saasbook/rag).
+AutoGraders platform consists of several modules:
 
-Usage
---------------------
+#### AutoGraders Server
 
-1. Launch an EC2 instance (micro is fine) with autograder AMI
+An end product to be used by education institutions and online education platforms to carry out automatic grading and to provide customizable feedback to students. 
 
-2. hw6Grader1 has the latest version of rag, so move the content from it to the new instance.
-   * You might want to move the logs before you copy as they take up a lot of space.
+**Main features:**  (add specific requirements)
 
-    NOTE: <i>Somebody should make a new AMI with the updated connection code, and enabled to pull from the saasbook repos</i>
+* easily deployed and maintained 
+* provides various interfaces to communicate with existing platforms and assignments submission protocols
+* supports grading various types of assignments and grading techniques
+* supports assignments for various programming languages and technologies
+    - testing
+    - acceptance testing
+    - mutation testing
+    - UI testing
+    - performance testing
+    - code quality testing - smells, complexity, ABC
+    - test coverage
+* scalable, to accommodate different loads and throughput
+* 100% code coverage by unit, integration and acceptance tests
+* provides tools for load testing, monitoring and notifications
 
-Configuration
-------------------------
+#### AutoGraders Instructor Box
 
-There are two files which control the autograder: ```config/autograders.yml``` and  ```config/conf.yml```.
+An environment and a collection of tools to create and test AutoGraders specifications for the grading process.
 
-* ```conf.yml``` includes the following:
+**Main features:** (add specific requirements)
 
-          live:
-            queue_uri: 'uri'
-            autograders_yml: ./config/autograders.yml
-            django_auth:
-              username: 'username'
-              password: 'password'
-            user_auth: #may be unnecessary
-              user_name: 'username'
-              user_pass: 'password'
-            halt: false # default: true, exit when all submission queues are empty
-            sleep_duration: 30
+* easily deployed and maintained
+* provides tools for creation an assignment package to be used by AutoGraders server
+* provides extensive documentation for instructors with examples on creating various types of assignments
+* provides tools for testing created assignment package
+* provides tools for simulating student experience through simulating:
+      - education platform submission form and feedback rendering
+      - education platform communication interface
 
-     * ```live``` : the name that will be given on the command line when calling the autograder command
-     * The rest of the information should be filled in appropriately.
+#### AutoGraders Development box
 
-  NOTE: ```autograders_yml``` _gives the path from the_ ```rag/``` _directory._
+An environment and a collection of tools for extension of existing functionality of AutoGraders platform.
 
+**Main features:** (specific requirements)
 
-* ```autograders.yml``` describes the actual autograder that will be running. An example is:
+* deployed and maintained
+* architecture
+* documented source code
 
-          assign-6-queue:
-            name: "BerkeleyX-cs169x-p3"
-            type: HW5Grader
-            due:  20121217120100
-            grace_period: 0
-            parts:
-              assign-2-part-1:
-                uri: ./hw6.yml
-                type: MigrationGrader
+### Important comments
 
-    * ```name``` : the name of the queue that will be pulled from, this must match what edX is submitting assignments to
-    * ```due``` : in YYYYMMDDHHMMSS format
-    * ```parts``` : used to describe the parts of each assignment
-    * ```uri``` : a path to the solutions from the rag base directory
-    * ```type``` : the type of autograder that will be used to grade the assignment
-    * ```grace``` : period is used to give late credit, this should be refactored further to allow specification for late penalties in this config file
+The current implementation only supports programming assignments for Ruby and Ruby based technologies.
 
-Execution and tests
---------------------------------
+### For developers
 
-####To run the autograder connection program:
+We are seeking contributors for our project.  
 
-        while true ; do ./run_edx_client.rb live ; done
+A few ideas why you should consider this project:
 
-   The grader *can* crash, this starts it up again.
+* project is being implemented in Ruby, Rails and ruby based technologies
+* The complexity (and thus interest and challenge rate) is intermediate to advance
+* You will learn about setting up virtual machines, cloud instances, application inter-communication, concurrent processing and databases
+* We strictly stay within the BDD philosophy, thus you have a chance to learn the BDD and TDD techniques to full extent in a real project
+* We aim for 100% code coverage
+* We aim for beautiful code and architecture
+* We strive to employ best software engineering practices, patterns and principles - SOFA, SOLID and others
+* We are adepts of Agile development
+* We enjoy Pair Programming for learning, fun and profit
+* We are building reliable and scalable software for a great cause, that will be used and benefited by hundreds of thousands of people around the world.
 
-
-####Example Commands to do all the grading for HW1:
-
-######Sanity specs
-
-        ./grade ../hw/ruby-calisthenics/skeletons/part1.rb ../hw/ruby-calisthenics/sanity_specs/part1_spec.rb
-        ./grade ../hw/ruby-calisthenics/skeletons/part2.rb ../hw/ruby-calisthenics/sanity_specs/part2_spec.rb
-        ./grade ../hw/ruby-calisthenics/skeletons/part3.rb ../hw/ruby-calisthenics/sanity_specs/part3_spec.rb
-        ./grade ../hw/ruby-calisthenics/skeletons/part4.rb ../hw/ruby-calisthenics/sanity_specs/part4_spec.rb
-        ./grade ../hw/ruby-calisthenics/skeletons/part5.rb ../hw/ruby-calisthenics/sanity_specs/part5_spec.rb
-        ./grade ../hw/ruby-calisthenics/skeletons/part6.rb ../hw/ruby-calisthenics/sanity_specs/part6_spec.rb
-        ./grade ../hw/ruby-calisthenics/skeletons/part7.rb ../hw/ruby-calisthenics/sanity_specs/part7_spec.rb
-
-######Full Specs
-
-         ./grade ../hw-solutions/ruby-calisthenics/lib/part1.rb ../hw-solutions/ruby-calisthenics/spec/part1_spec.rb
-         ./grade ../hw-solutions/ruby-calisthenics/lib/part2.rb ../hw-solutions/ruby-calisthenics/spec/part2_spec.rb
-         ./grade ../hw-solutions/ruby-calisthenics/lib/part3.rb ../hw-solutions/ruby-calisthenics/spec/part3_spec.rb
-         ./grade ../hw-solutions/ruby-calisthenics/lib/part4.rb ../hw-solutions/ruby-calisthenics/spec/part4_spec.rb
-         ./grade ../hw-solutions/ruby-calisthenics/lib/part5.rb ../hw-solutions/ruby-calisthenics/spec/part5_spec.rb
-         ./grade ../hw-solutions/ruby-calisthenics/lib/part6.rb ../hw-solutions/ruby-calisthenics/spec/part6_spec.rb
-         ./grade ../hw-solutions/ruby-calisthenics/lib/part7.rb ../hw-solutions/ruby-calisthenics/spec/part7_spec.rb
-
-There is also checking the skeletons against the full specs and the sanity specs against the full solutions.
-
-
-## The mutation testing/feature grader (HW 3)
-
-At a high level HW3 and others that use `FeatureGrader` work by running
-student-submitted Cucumber scenarios against modified versions of a
-instructor-provided app. 
-
-The Following Diagram roughly describes the flow of the autograder :
-
-<img src="./feature_grader.png"/>
-
-Each step defined in the .yml file can have scenarios to run iff that step passes.
-
-Example from hw3.yml:
-
-    - &step1-1
-          FEATURE: features/filter_movie_list.feature
-          pass: true
-          weight: 0.2
-          if_pass:
-          - &step1-3
-          FEATURE: features/filter_movie_list.feature
-          version: 2
-          weight: 0.075
-          desc: "results = [G, PG-13] movies"
-          failures:
-          - *restrict_pg_r
-          - *all_x_selected
-
-In this case if step1-1 passes, Step 1-3 will be run. If step1-1 fails
-then step1-3 will not run and the student will not receive points for
-it. It is important that the outer step be less restrictive than the
-inner step (If the outer one fails, there should be no way that the
-inner one could pass). 
-
-Step1-3 has two scenarios specified as failures; this indicates that
-when the cucumber features are run, both of those scenarios should
-fail. In other words, when the mutation for this step is added to the
-app, the student’s tests should detect the change and fail. (Example: If
-the test is to ensure that data is sorted, and the mutation is that the
-data is in reverse order, the student’s test should fail because the app
-is not behaving as expected) 
-
-### Defining a new step:
-
-In order to add a new step the following must be done:
-
-1. Add an entry to the .yml file.
-
-2. The new entry should be a hash  with the following properties:
-	1. `FEATURE`, a relative path to the Cucumber feature that will be run for this step.
-	2. `weight`, the fraction of total points on this homework
-        represented by this feature
-	3. `version`: This sets an environment variable that the
- mutation-test app can  use to add any modifications desired to the app before the feature is run.
-	4. `desc`: A string describing the step, used when providing feedback
-
-3. Optional properties:
-	1. `failures` (list): scenarios that should fail in this step
-	2. `if_pass` (list): steps to run iff this step passes.
-
-### Defining a new Scenario:
-
-To define a new scenario add a new entry to the "scenarios" hash in the
-.yml file. 
-It is a good idea to set an alias for the scenario so it can be
-referenced later inside of steps. 
-
-The entry should contain:
-
-1. `match`: A regular expression that will identify the name of this
-scenario. (Used when parsing cucumber output to see if this scenario
-passed or failed) 
-
-2. `desc`: A description of the scenario. (Used to give feedback to the student)
-
-### Adding a mutation to the app:
-
-When a feature is run, the environment variable `version` will be set to
-the value of the `version` property for that feature.  Use this as a
-feature flag in the app (by checking `ENV["version"]`) to trigger a
-"bug", e.g. reversing sort order/not returning all data. 
+### Become a member of our team today!
