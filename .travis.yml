@@ -3,20 +3,18 @@ rvm:
 - 1.9.3
 env:
   global:
-    - secure: "APcJbPLKm5SVGp9vgjE5W6ZDNN9MxLmRmI9jglP9wJTX9qIoL3dp3WpMzRC24MK4pDTLMGEGPKJcVJDNnGrEcSWWrLVjcjPGv6P49LgY3KVTOE7v1fANAwutug9i7ZnJC6PctE7J0ZJsjXl7OTEF5ozfW4tZXCyeJhAjILp3dsQ="
-    - secure: "jgF57tdorW05jnIHqABVvQua+cWFbiuQ9uFSX87fpzUkaDxXsjH/R6BowBGWgN40IvbR58+xF7uKFNWXGVcef+2KUz5hSNEc5IdeSVprG/DBDpv/nF9UWAwsRfxfxgybT/dXDnnNd/SXN1uhSb5cYR/oA2Yh0eS+qq1F9T6gUSk="
-    - secure: "E4NJKcSgYL7ioU8soRPEc8FQkPZjDzqh5y6HiuzSXaaN9MfhSGQyCNc0zlUqCpO0/XBff1KV2Yj6oumcqQkfztxFwCcB1GzIFjSPCwyg9G3Ivwopozjw5Vh4ghvA3uhENXSocLe2bEqCdZQyozyLt7TW/ymX+STyG8oPnlwRx0Q="
+    - secure: "Cz5+iKG5XTRj3emINK6VPb+fAovXTYj2LfjgJuhXOh4y9afz/YGdBWWtrzZKT9DAAOMCYppucrtxOvArRZNaJfwtFXXiFqF2pubqtp+45V13i3KQixk+M6RqrUMvAbIVwtnpXGZTgBgj8fH3x95tp/HIlvneE/+6VtyihAgF/9Q="
+    - secure: "ajOulCxCQbf4XcNpNGtP5nfiOtHwhwaogewwI29MFtXCXLx0sNOPui6wfonk4UQbqfBSit7UINyLzveAi6wTPl68UzKy/z47UkiaYN9dDbNvbOeEPQjMrg3+wOqEgQcZ0KWd8wcNVLRd3z41gNQo0ogCqJsZzyMcJElX9lEhPYE="
+    - secure: "VA8jtntrnAvG6a+x9Qki4Gduw2NwaxGKghG5im5CdmraNFNBr3BFyQfNkfFkOplqohRMDNIonVSer1ErPSLtS4xXLzGFYADbzJbuJdSRuB5QuqhfI85LSB79LAPEeiLFY6JQO42GrP9wpzg1PjfNux6d/89s75eT33DESGkQr/4="
 
 install:
   - bundle install
 script:
-  - echo $GIT_USER
-  - echo $GIT_PATH
-  #- git clone https://$GIT_USER:$GIT_PASS@$GIT_PATH homeworks
-  #- cd homeworks/HW3/app
-  #- BUNDLE_GEMFILE=Gemfile
-  #- bundle install
-  #- cd ../../..
-  - BUNDLE_GEMFILE=Gemfile
-  - bundle exec rspec spec
-  - bundle exec cucumber
+- git clone https://$GIT_USER:$GIT_PASS@$GIT_PATH homeworks
+- cd homeworks/HW3/app
+- BUNDLE_GEMFILE=Gemfile
+- bundle install
+- cd ../../..
+- BUNDLE_GEMFILE=Gemfile
+- bundle exec rspec spec
+- bundle exec cucumber
