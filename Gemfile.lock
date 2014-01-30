@@ -162,7 +162,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ZenTest (= 4.9.5)
+  ZenTest
   addressable
   cucumber
   debugger

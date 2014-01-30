@@ -7,7 +7,7 @@ gem 'octokit'
 gem 'term-ansicolor'
 
 group :development, :testing do
-  gem 'ZenTest', '4.9.5'
+  gem 'ZenTest'
   gem 'debugger'
   gem 'simplecov'
   gem 'simplecov-rcov'
