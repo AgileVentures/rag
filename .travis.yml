@@ -1,6 +1,6 @@
 language: ruby
-rvm: 
-  - "1.9.3"
+rvm:
+- 1.9.3
 script:
-  - bundle exec rspec spec
-  - bundle exec cucumber
+- bundle exec rspec spec
+- bundle exec cucumber

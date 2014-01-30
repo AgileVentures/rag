@@ -1,3 +1,9 @@
+.gitignore
+.travis.yml
+.ruby-gemset
+.ruby-version
+/homeworks
+
 *~
 .#*
 .*.swp
