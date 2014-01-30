@@ -10,11 +10,13 @@ env:
 install:
   - bundle install
 script:
-- git clone https://$GIT_USER:$GIT_PASS@$GIT_PATH homeworks
-- cd homeworks/HW3/app
-- BUNDLE_GEMFILE=Gemfile
-- bundle install
-- cd ../../..
+ - echo $GIT_USER
+ - echo $GIT_PATH
+#- git clone https://$GIT_USER:$GIT_PASS@$GIT_PATH homeworks
+#- cd homeworks/HW3/app
+#- BUNDLE_GEMFILE=Gemfile
+#- bundle install
+#- cd ../../..
 - BUNDLE_GEMFILE=Gemfile
 - bundle exec rspec spec
 - bundle exec cucumber
