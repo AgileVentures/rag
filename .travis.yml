@@ -3,9 +3,9 @@ rvm:
 - 1.9.3
 env:
   global:
-    - secure: "GZqZvCXqeK86/autHxsYCvBmvkuAcejPHAUO50/xZKq+aS4j5Y3tpjEAS8mgRqbobJff53HJB212FNCKoLvRC7q6DHyGA7LdEVwDQgz2PcfH5HUF7b5IY8GbJZtVtaJfENho750zRyvL/iWazIJty3PP2n8kuMJqZ333PZwgj8o="
-    - secure: "bxZoiKTqAtqcQAGlcA+cLfpfyNJ6ueRlBBhI8PeMSaPNug5R038DAV02N1Y7cGPSnYxSaRvWcg9TnhNZa+QBltilwQpBeX/ng9J3LySKJ1b/fYSC2zK3MElyO2HG+Qs4tWmtCuP3JhikekwN7zUGJ0BJJEWmxWFcyO4fI9obN0s="
-    - secure: "yrf3vN0yXehs3M6kt6+xzQkA4kxyXGaPGH0/xPnK7gq0giA4bXqT37zYxoi184l1KXcPyNn7UVo3LBj0IEnSvEHjZmOdm7m/YY8eIpM/yFpbyCEWKbBTuqce9uhmpyaRDs8cyIrReZ4F90ur5/4cLa3uxi6VYXqhImh8VUHBu5U="
+  - secure: "APcJbPLKm5SVGp9vgjE5W6ZDNN9MxLmRmI9jglP9wJTX9qIoL3dp3WpMzRC24MK4pDTLMGEGPKJcVJDNnGrEcSWWrLVjcjPGv6P49LgY3KVTOE7v1fANAwutug9i7ZnJC6PctE7J0ZJsjXl7OTEF5ozfW4tZXCyeJhAjILp3dsQ="
+  - secure: "jgF57tdorW05jnIHqABVvQua+cWFbiuQ9uFSX87fpzUkaDxXsjH/R6BowBGWgN40IvbR58+xF7uKFNWXGVcef+2KUz5hSNEc5IdeSVprG/DBDpv/nF9UWAwsRfxfxgybT/dXDnnNd/SXN1uhSb5cYR/oA2Yh0eS+qq1F9T6gUSk="
+  - secure: "E4NJKcSgYL7ioU8soRPEc8FQkPZjDzqh5y6HiuzSXaaN9MfhSGQyCNc0zlUqCpO0/XBff1KV2Yj6oumcqQkfztxFwCcB1GzIFjSPCwyg9G3Ivwopozjw5Vh4ghvA3uhENXSocLe2bEqCdZQyozyLt7TW/ymX+STyG8oPnlwRx0Q="
 install:
   - bundle install
 script:
