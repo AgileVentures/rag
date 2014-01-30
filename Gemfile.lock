@@ -1,7 +1,7 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
-    ZenTest (4.9.4)
+    ZenTest (4.9.5)
     activesupport (4.0.0)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
@@ -162,7 +162,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ZenTest
+  ZenTest (= 4.9.5)
   addressable
   cucumber
   debugger
