@@ -1,20 +1,6 @@
 language: ruby
 rvm:
 - 1.9.3
-env:
-  global:
-    - secure: "Cz5+iKG5XTRj3emINK6VPb+fAovXTYj2LfjgJuhXOh4y9afz/YGdBWWtrzZKT9DAAOMCYppucrtxOvArRZNaJfwtFXXiFqF2pubqtp+45V13i3KQixk+M6RqrUMvAbIVwtnpXGZTgBgj8fH3x95tp/HIlvneE/+6VtyihAgF/9Q="
-    - secure: "ajOulCxCQbf4XcNpNGtP5nfiOtHwhwaogewwI29MFtXCXLx0sNOPui6wfonk4UQbqfBSit7UINyLzveAi6wTPl68UzKy/z47UkiaYN9dDbNvbOeEPQjMrg3+wOqEgQcZ0KWd8wcNVLRd3z41gNQo0ogCqJsZzyMcJElX9lEhPYE="
-    - secure: "VA8jtntrnAvG6a+x9Qki4Gduw2NwaxGKghG5im5CdmraNFNBr3BFyQfNkfFkOplqohRMDNIonVSer1ErPSLtS4xXLzGFYADbzJbuJdSRuB5QuqhfI85LSB79LAPEeiLFY6JQO42GrP9wpzg1PjfNux6d/89s75eT33DESGkQr/4="
-
-install:
-  - bundle install
 script:
-- git clone https://$GIT_USER:$GIT_PASS@$GIT_PATH homeworks
-- cd homeworks/HW3/app
-- BUNDLE_GEMFILE=Gemfile
-- bundle install
-- cd ../../..
-- BUNDLE_GEMFILE=Gemfile
 - bundle exec rspec spec
 - bundle exec cucumber
