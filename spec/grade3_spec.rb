@@ -70,17 +70,13 @@ describe 'grade3' do
     end
 
     it 'raises an error if an AutoGrader fails' do
-      $VERBOSE = nil #suppresing warnings when reassigning constants
-      old_stderr = STDERR
       mock_stderr = StringIO.new
-      STDERR = mock_stderr
+      $stderr = mock_stderr
 
       AutoGrader.stub(:create).and_call_original
 
       expect { load grader }.to raise_error
       expect(mock_stderr.string).to include('FATAL')
-
-      STDERR = old_stderr
     end
     it 'prints out the score and comments' do
       load grader
