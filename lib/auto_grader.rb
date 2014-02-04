@@ -1,5 +1,3 @@
-require 'ruby-debug'
-
 class AutoGrader
   class AutoGrader::NoSuchGraderError < StandardError ; end
 
