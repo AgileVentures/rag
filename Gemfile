@@ -14,4 +14,3 @@ group :development, :testing do
   gem 'addressable'
   gem 'cucumber'
 end
-

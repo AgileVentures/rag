@@ -2,14 +2,50 @@ require 'spec_helper'
 
 describe AutoGrader do
   describe 'initializing with valid grader' do
-    subject { AutoGrader.create('1-1', 'MultipleChoiceGrader', 'b', {}) }
-    it { should be_a_kind_of AutoGrader }
-    it 'should copy assignment_id' do ; subject.assignment_id.should == '1-1' ; end
+    before(:each) do
+      @grader = double('AutoGrader').as_null_object
+      Object.stub(:const_get).and_return(@grader)
+    end
+
+    it 'initializes a grader with valid arguments' do
+      expect(@grader).to receive(:new).with('TestAnswer', test: 'test')
+      AutoGrader.create('1-1', 'TestGrader', 'TestAnswer', { test: 'test' })
+    end
+
+    it 'returns a grader with 0 score and responds to #grade! when no answer is submitted' do
+      autograder = AutoGrader.create('1-1', 'TestGrader', '', { test: 'test' })
+
+      expect(autograder).to respond_to(:grade!)
+      expect(autograder.normalized_score).to eq(0)
+      expect(autograder.comments).to eq('You did not submit any answer.')
+      expect(autograder.assignment_id).to eq('1-1')
+      expect(autograder.errors).to be_nil
+    end
+
+    it 'assigns grader with assignment_id' do
+      expect(@grader).to receive(:assignment_id=).with('1-1')
+      AutoGrader.create('1-1', 'TestGrader', 'TestAnswer', { test: 'test' })
+    end
+
   end
   it 'should raise NoSuchGraderError with invalid grader' do
-    lambda { AutoGrader.create '1-1', 'Bad', 'b', {} }.
-      should raise_error(AutoGrader::NoSuchGraderError)
+    expect { AutoGrader.create('1-1', 'TestGrader', 'TestAnswer', { test: 'test' }) }.to raise_error(AutoGrader::NoSuchGraderError)
   end
+
+
+#TODO YA consider moving these specs to subclasses
+
+  it 'returns a grader with 0 score and responds to #grade! when no answer is submitted' do
+    grader = double('AutoGrader').as_null_object
+    Object.stub(:const_get).and_return(grader)
+
+    autograder = AutoGrader.create('1-1', 'TestGrader', '', { test: 'test' })
+
+    expect(autograder).to respond_to(:grade!)
+    expect(autograder).to respond_to(:normalized_score)
+
+  end
+
   describe 'generic grading' do
     describe 'with an empty answer' do
       before :each do
@@ -33,4 +69,5 @@ describe AutoGrader do
     #describe 'with non-7-bit ASCII' do ; it_should_behave_like  'with wonky input' ;  end
     #describe 'with unicode' do ; it_should_behave_like 'with wonky input' ;  end
   end
+
 end
